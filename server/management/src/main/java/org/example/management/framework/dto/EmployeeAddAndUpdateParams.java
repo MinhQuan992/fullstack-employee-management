@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployeeAddParams {
+public class EmployeeAddAndUpdateParams {
   @NotBlank(message = "The first name is required")
   String firstName;
 
