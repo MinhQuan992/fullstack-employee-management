@@ -3,7 +3,7 @@ spring:
     url: jdbc:mysql://${DB_ADDRESS:localhost}:${DB_PORT:3306}/${DB_DATABASE:employee_management}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update

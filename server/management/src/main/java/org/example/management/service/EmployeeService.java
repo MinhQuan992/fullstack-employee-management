@@ -35,10 +35,7 @@ public class EmployeeService {
 
   public Employee getOneEmployee(String employeeId) {
     Optional<Employee> employeeOptional = employeeRepository.findById(Long.parseLong(employeeId));
-    if (employeeOptional.isEmpty()) {
-      throw new ResourceNotFoundException("Employee Not Found");
-    }
-    return employeeOptional.get();
+    return employeeOptional.orElseThrow(() -> new ResourceNotFoundException("Employee Not Found"));
   }
 
   public Employee updateEmployee(String employeeId, EmployeeAddAndUpdateParams params) {
