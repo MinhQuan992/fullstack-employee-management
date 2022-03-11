@@ -29,6 +29,13 @@ export const addNewEmployee = createAsyncThunk(
   }
 );
 
+export const updateEmployee = createAsyncThunk(
+  "employeeList/updateEmployee",
+  async (employee: Employee) => {
+    return await EmployeeService.updateEmployee(employee);
+  }
+);
+
 export const employeeSlice = createSlice({
   name: "employeeList",
   initialState,
@@ -44,6 +51,10 @@ export const employeeSlice = createSlice({
       })
       .addCase(addNewEmployee.fulfilled, (state, action) => {
         employeeAdapter.addOne(state, action.payload);
+      })
+      .addCase(updateEmployee.fulfilled, (state, action) => {
+        const newEmployee = action.payload;
+        state.entities[newEmployee.id] = newEmployee;
       });
   },
 });

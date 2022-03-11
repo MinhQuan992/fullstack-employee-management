@@ -2,10 +2,14 @@
 
 @layer components {
   .container {
-    @apply flex flex-col flex-wrap justify-center items-center w-auto m-auto mt-4;
+    @apply flex flex-col flex-wrap justify-center items-center w-auto m-auto;
   }
 
   .tbl {
-    @apply sm:min-w-min md:w-3/4 lg:w-5/6 shadow shadow-slate-500 rounded-md content-center;
+    @apply shadow shadow-slate-500 rounded-md content-center;
+  }
+
+  .table-cell {
+    @apply pt-4 inline-block overflow-hidden overflow-ellipsis whitespace-nowrap;
   }
 }
