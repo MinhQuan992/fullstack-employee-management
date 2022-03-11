@@ -5,6 +5,7 @@ import org.example.management.framework.api.EmployeeAPI;
 import org.example.management.framework.dto.EmployeeAddAndUpdateParams;
 import org.example.management.model.Employee;
 import org.example.management.service.EmployeeService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,5 +34,10 @@ public class EmployeeController implements EmployeeAPI {
   @Override
   public ResponseEntity<Employee> updateEmployee(String employeeId, EmployeeAddAndUpdateParams params) {
     return ResponseEntity.ok(employeeService.updateEmployee(employeeId, params));
+  }
+
+  @Override
+  public ResponseEntity<HttpStatus> deleteEmployee(String employeeId) {
+    return ResponseEntity.ok(employeeService.deleteEmployee(employeeId));
   }
 }

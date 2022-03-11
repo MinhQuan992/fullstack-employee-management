@@ -2,6 +2,7 @@ package org.example.management.framework.api;
 
 import org.example.management.framework.dto.EmployeeAddAndUpdateParams;
 import org.example.management.model.Employee;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -24,4 +25,7 @@ public interface EmployeeAPI {
   @PutMapping("/{employeeId}")
   ResponseEntity<Employee> updateEmployee(
       @PathVariable String employeeId, @RequestBody @Valid EmployeeAddAndUpdateParams params);
+
+  @DeleteMapping("/{employeeId}")
+  ResponseEntity<HttpStatus> deleteEmployee(@PathVariable String employeeId);
 }

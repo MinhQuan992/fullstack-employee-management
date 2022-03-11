@@ -6,6 +6,7 @@ import org.example.management.framework.dto.EmployeeAddAndUpdateParams;
 import org.example.management.model.Employee;
 import org.example.management.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,5 +47,11 @@ public class EmployeeService {
     employee.setEmail(params.getEmail());
 
     return employeeRepository.save(employee);
+  }
+
+  public HttpStatus deleteEmployee(String employeeId) {
+    Employee employee = getOneEmployee(employeeId);
+    employeeRepository.delete(employee);
+    return HttpStatus.NO_CONTENT;
   }
 }
