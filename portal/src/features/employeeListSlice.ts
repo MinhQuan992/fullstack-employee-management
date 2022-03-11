@@ -13,6 +13,7 @@ const employeeAdapter = createEntityAdapter<Employee>();
 
 const initialState = employeeAdapter.getInitialState({
   loading: false,
+  showPopup: false,
 });
 
 export const getAllEmployees = createAsyncThunk(
@@ -36,10 +37,21 @@ export const updateEmployee = createAsyncThunk(
   }
 );
 
+export const deleteEmployee = createAsyncThunk(
+  "employeeList/deleteEmployee",
+  async (employeeId: number) => {
+    return await EmployeeService.deleteEmployee(employeeId);
+  }
+);
+
 export const employeeSlice = createSlice({
   name: "employeeList",
   initialState,
-  reducers: {},
+  reducers: {
+    changePopupState: (state) => {
+      state.showPopup = !state.showPopup;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getAllEmployees.pending, (state) => {
@@ -55,11 +67,14 @@ export const employeeSlice = createSlice({
       .addCase(updateEmployee.fulfilled, (state, action) => {
         const newEmployee = action.payload;
         state.entities[newEmployee.id] = newEmployee;
+      })
+      .addCase(deleteEmployee.fulfilled, (state, action) => {
+        employeeAdapter.removeOne(state, action.payload);
       });
   },
 });
 
 export const { selectAll: selectAllEmployees, selectById: selectEmployeeById } =
   employeeAdapter.getSelectors((state: RootState) => state.employeeList);
-
+export const { changePopupState } = employeeSlice.actions;
 export default employeeSlice.reducer;

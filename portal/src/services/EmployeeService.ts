@@ -37,6 +37,13 @@ class EmployeeService {
       return null;
     }
   }
+  async deleteEmployee(employeeId: number) {
+    const response = await axios.delete(BASE_URL + `/${employeeId}`);    
+    if (response.status === 200) {
+      return employeeId;
+    }
+    throw new Error(response.statusText);
+  }
 }
 
 export default new EmployeeService();

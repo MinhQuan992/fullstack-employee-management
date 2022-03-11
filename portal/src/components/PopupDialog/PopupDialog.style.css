@@ -1,0 +1,24 @@
+@tailwind components;
+
+@layer components {
+  .popup-background {
+    @apply fixed top-0 left-0 bottom-0 right-0 backdrop-blur-sm;
+  }
+
+  .popup-container {
+    @apply relative w-full h-full m-auto;
+  }
+
+  .popup {
+    @apply absolute top-0 left-0 bottom-0 right-0 w-2/6 h-2/4 m-auto 
+    bg-white border-2 border-indigo-600 rounded-lg;
+  }
+
+  .popup-inner {
+    @apply relative p-8 w-full;
+  }
+
+  .dialog-btn {
+    @apply text-white py-2 px-5 rounded-lg;
+  }
+}
